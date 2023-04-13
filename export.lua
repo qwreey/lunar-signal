@@ -3,9 +3,14 @@ export type connection = {
 	Destroy: (self:connection)->();
 	New: (bindable,(...any)->())->();
 }
+export type timeouted = {}
+export type released = {}
 export type bindable = {
 	Fire: (self:bindable,...any)->();
-	Wait: (self:bindable)->();
+	FireSync: (self:bindable,...any)->();
+	ReleaseWaittings: (self:bindable)->();
+	DisconnectAll: (self:bindable,releaseWaittings:boolean?)->();
+	Wait: (self:bindable,timeoutInSecond:number?)->(released|timeouted|any,...any);
 	CheckConnected: (self:bindable,(...any)->())->boolean;
 	Connect: (self:bindable,(...any)->())->connection;
 	Once: (self:bindable,(...any)->())->connection;
@@ -25,6 +30,8 @@ export type module = {
 	Connection: connection,
 	BindableList: {[id]:bindable},
 	Bindable: bindable,
+	Timeouted: timeouted,
+	Released: released
 }
 export type init = ()->module
 
