@@ -1,4 +1,3 @@
-
 export type connection = {
 	Disconnect: (self:connection)->();
 	Destroy: (self:connection)->();
