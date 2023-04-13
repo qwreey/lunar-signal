@@ -1,5 +1,5 @@
 {
-    "name": "signal.lua",
+    "name": "signal",
     "tree": {
         "$path": "export.lua",
         "spring": {
