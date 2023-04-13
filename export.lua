@@ -5,6 +5,7 @@ export type connection = {
 }
 export type timeouted = {}
 export type released = {}
+export type id = string
 export type bindable = {
 	Fire: (self:bindable,...any)->();
 	FireSync: (self:bindable,...any)->();
@@ -16,6 +17,7 @@ export type bindable = {
 	Once: (self:bindable,(...any)->())->connection;
 	Destroy: (self:bindable)->();
 	New: (id:string?)->bindable;
+	ID: id?;
 }
 export type disconnecter = {
 	Add: (self:disconnecter,connection:RBXScriptConnection)->();
@@ -23,7 +25,6 @@ export type disconnecter = {
 	Disconnect: (self:disconnecter)->();
 	New: (id:string?)->disconnecter;
 }
-export type id = string
 export type module = {
 	Disconnecter: disconnecter,
 	DisconnecterList: {[id]:disconnecter},

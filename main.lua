@@ -329,7 +329,7 @@ local function Init()
 		return yield()
 	end
 	function bindable:Destroy()
-		local id = self.id
+		local id = self.ID
 		if id then
 			bindables[id] = nil
 		end
@@ -340,7 +340,7 @@ local function Init()
 		if id and bindables[id] then
 			return bindables[id]
 		end
-		local this = {id=id,waitting={},onceConnection={},connection={}}
+		local this = {ID=id,waitting={},onceConnection={},connection={}}
 		setmetatable(this,bindable)
 		if id then
 			bindables[id] = this
