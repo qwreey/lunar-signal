@@ -1,13 +1,19 @@
 
+local wrap = coroutine.wrap
 local running = coroutine.running
 local resume = coroutine.resume
 local yield = coroutine.yield
 local insert = table.insert
 local remove = table.remove
 
+local function _spawn(func,...)
+    return wrap(func,...)()
+end
+
 local function Init()
     local new = {}
     new.warn = warn
+    new.spawn = (task and task.spawn) or _spawn
 
     -- roblox connections disconnecter
     local disconnecters = {}
@@ -92,15 +98,15 @@ local function Init()
         self.onceConnection = {}
 
         for _,v in pairs(waitting) do
-            task.spawn(resume,v,...)
+            new.spawn(resume,v,...)
         end
 
         for _,v in pairs(self.connection) do
-            task.spawn(v.func,...)
+            new.spawn(v.func,...)
         end
 
         for _,v in pairs(onceConnection) do
-            task.spawn(v.func,...)
+            new.spawn(v.func,...)
         end
     end
     function bindable:DisconnectAll()
@@ -109,7 +115,7 @@ local function Init()
         self.onceConnection = {}
         self.connection = {}
         for _,v in pairs(waitting) do
-            task.spawn(resume,v,nil)
+            new.spawn(resume,v,nil)
         end
     end
     function bindable:Wait()
