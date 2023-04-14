@@ -3,7 +3,7 @@
     "tree": {
         "$path": "export.lua",
         "main": {
-            "$path": "main.lua"
+            "$path": "init.lua"
         }
     }
 }
