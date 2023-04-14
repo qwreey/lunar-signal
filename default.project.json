@@ -2,7 +2,7 @@
     "name": "signal",
     "tree": {
         "$path": "export.lua",
-        "spring": {
+        "main": {
             "$path": "main.lua"
         }
     }

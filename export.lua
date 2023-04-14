@@ -36,4 +36,4 @@ export type module = {
 }
 export type init = ()->module
 
-return require(script.spring) :: module & { Init: init }
+return require(script.main) :: module & { Init: init }
